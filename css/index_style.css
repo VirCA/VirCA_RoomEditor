@@ -1,103 +1,31 @@
-    img{
+    #image{
         display: block;
         margin-left: auto;
         margin-right: auto;
+        position: relative;
+        text-align: center;
+        width:100%;
+        margin-top: 8%
     }
     #choiceTree{
+        all:none;
+        margin-left: 42%;
         text-align: left;
+        position: relative;
+        width: 100%;
+
+        position: relative;
     }
-    .fl{
-        float: left;
+    #btn-submit{
+        all:none;
+        position: relative;
+        margin-left: 44%;
     }
-    #btn-back{
-        margin-left: 40%;
-    }
-    header{
-        margin-left: 100px;
-        margin-right: 165px;
-    }
-    #dNd-buttons{
-      align-content: center;
-    }
-    .hidden{
-        visibility: hidden;
-    }
-    .shown{
-        visibility: visible;
-    }
-    #page-title{
-        margin-left: 28%;
-    }
-    .plane {
-        margin-left: 6%;
-        float: left;
+    #subbut{
+        width: 100%;
+        text-align: center;
     }
     label{
         height: 30px;
-    }
-    .nums{
-        width: 100px;
-        float: right;
-
-        margin-right: 150px;
-    }
-    footer{
-        margin-top: 420px;
-    }
-    .tex{
-        width: 120px;
-
-        margin-right: 150px;
-        float: right;
-    }
-    .second{
-        margin-left: 20px;
-    }
-    .third{
-        margin-left: 20px;
-    }
-    .fourth{
-        margin-left: 20px;
-    }
-    .fifth{
-        margin-left: 20px;
-    }
-    .settings-zone {
-        width: 500px;
-        height: 400px;
-        border: 2px #ccc;
-        color: #007AA3;
-        text-align: left;
-        overflow-y:scroll;
-    }
-    .centered {
-        background-color: #007AA3;
-        color: white;
-        width: 500px;
-    }
-    p{
-
-    }
-    #jstree{
-        width: 500px;
-        height: 400px;
-        overflow-y:scroll;
-        text-align: left;
-    }
-    .fa{
-        border: thick;
-        width: 100px;
-    }
-    #treeLEFT{
-        overflow-y: scroll; 
-        height: 400px;
-    }
-    #url{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-    #inputURL{
-        width: 600px;
+        margin-left: 37%;
     }

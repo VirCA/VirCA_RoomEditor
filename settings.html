@@ -1,13 +1,56 @@
-﻿
-    <header>
-        <p>On this page, you can modify your room properties. You can select each tag you would like to, and change it's value. After you finish, you need to click on "Generate and Download Room File" button to get your room file.</p>
-    </header>
-    <div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>VirCA Room Editor</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/settings_style.css">
+
+
+</head>
+
+<body>
+<div id="image">
+    <img src="vircalogo.png" width="300px"><br><br>
+</div>
+    <div id="settings">
+        <div id="btn-back">
+            <a class="btn btn-danger">Get back to the selection part</a>
+        </div>
         <div class="plane">
             <p class="centered"> Select the property you would like to change</p>
-            <!--<div id="jstree"></div>-->
-            
-
+            <div class="row">
+                <div class="span3">
+                    <div class="well">
+                            <ul id="treeLEFT" class="nav nav-list">
+                              <li ><label id = "treeROOM" class="fa tree-toggle nav-header btn btn-default">room</label>
+                              <ul class="fa nav nav-list">
+                                 <li ><label id = "treeSETTINGS" class="fa tree-toggle nav-header btn btn-default">Settings</label>
+                                 <ul class="fa nav nav-list tree">
+                                    <li><label id = "treeENVIRONMENT" class="btn btn-warning fa tree-toggle nav-header">Environment</label>
+                                    <li><label id = "treePOINTER" class="btn btn-warning fa tree-toggle nav-header">Pointer</label>
+                                    <li><label id = "treeBOUNDAIRES" class="btn btn-warning fa tree-toggle nav-header">Boundaires</label>
+                                    <li><label id = "treeCAMERA" class="btn btn-warning fa tree-toggle nav-header">Camera</label>
+                                    <li><label id = "treeBROWSER" class="btn btn-warning fa tree-toggle nav-header">Browser</label>
+                                    <li><label id = "treePRESENTATION" class="btn btn-warning fa tree-toggle nav-header">Presentation</label>
+                                 </ul>
+                                 <li><label id="treeCONTENT" class="fa tree-toggle nav-header btn btn-default">Content</label>
+                                 <ul id="treeCONTENTNODE" class="fa nav nav-list tree"></ul>
+                              </ul>
+                            </ul> 
+                    </div>
+                </div>
+            </div>                
         </div>
 
         <div class="plane">
@@ -15,9 +58,12 @@
             <p class="centered">
                 The Selected Property
             </p>
+            <div class="row">
+                <div class="span3">
+                    <div class="well">
             <div class="settings-zone">
                 <!--FIRST-->
-                <div id="RN" class="first hidden">
+                <div id="RN" class="first hidden"> 
                     <label>Room name:</label>
                     <input class="tex" type="text" id="roomName" value=""><br>
                 </div>
@@ -212,7 +258,7 @@
                                             <label>z: </label>
                                             <input class="nums" step="0.001" type="number" id="camera_pose_orientation_qz"><br>
                                             <label>w: </label>
-                                            <input class="nums" step="0.001" type="number" id="camera_pose_orientation_qw"><br> 
+                                            <input class="nums" step="0.001" type="number" id="camera_pose_orientation_qw"><br>
                                         </div>
                                         <div id="camera_angleAxis">
                                             <label>Angle: </label>
@@ -307,86 +353,54 @@
             </div>
 
         </div>
-    </div>
-    <footer>
-        <div id="dNd-buttons">
-            <a class="btn btn-default" id="settings_submit">Generate and Download Room File</a>
-        </div>
-    </footer>
+    </div> </div> </div>
 
-    <style>
     
-    header{
-        margin-left: 100px;
-        margin-right: 165px;
-    }
-    #dNd-buttons{
-      align-content: center;
-    }
-    .hidden{
-        visibility: hidden;
-    }
-    .shown{
-        visibility: visible;
-    }
-    #page-title{
-        margin-left: 28%;
-    }
-    .plane {
-        margin-left: 6%;
-        float: left;
-    }
-    label{
-        height: 30px;
-    }
-    .nums{
-        width: 100px;
-        float: right;
+
+    <!-- jQuery -->
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/settings.js"></script>
+    
+    <script>
+
+    $(function(){
+        window.$ = window.jQuery = require('jQuery');
+        var parser = require("./js/roomObjectGenerator.js");
+        var settings = require("./js/settings.js");
+        var room = {};
+        var roomPath = "";
+        roomPath = sessionStorage.getItem('roomPath');
+        if(roomPath != undefined){
+            console.log("Roompath: "+roomPath);
+            room = parser(roomPath, settings);
+
+            $("#url").removeClass("shown").addClass("hidden");
+            $("#settings").removeClass("hidden").addClass("shown");    
+        }
+        else{
+            console.log("Error: No file selected. RoomPath: "+roomPath);
+        }
+        $('#btn-back').click(function(){
+            window.location = "./index.html";
+        });
+        $('.tree-toggle').click(function () {
+            $(this).parent().children('ul.tree').toggle(200);
+        });
+        $(function(){
+        $('.tree-toggle').parent().children('ul.tree').toggle(200);
+        })
         
-        margin-right: 150px;
-        step:
-    }
-    footer{
-        margin-top: 420px;
-    }
-    .tex{
-        width: 120px;
-        
-        margin-right: 150px;
-        float: right;
-    }
-    .second{
-        margin-left: 20px;
-    }
-    .third{
-        margin-left: 20px;
-    }
-    .fourth{
-        margin-left: 20px;
-    }
-    .fifth{
-        margin-left: 20px;
-    }
-    .settings-zone {
-        width: 500px;
-        height: 400px;
-        border: 2px #ccc;
-        color: #007AA3;
-        text-align: left;
-        overflow-y:scroll;
-    }
-    .centered {
-        background-color: #007AA3;
-        color: white;
-        width: 500px;
-    }
-    p{
-        
-    }
-    #jstree{
-        width: 500px;
-        height: 400px;
-        overflow-y:scroll;
-        text-align: left;
-    }
-    </style>
+    });
+
+    
+    </script>
+   </body>
+
+</html>

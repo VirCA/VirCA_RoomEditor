@@ -88,7 +88,7 @@ module.exports = function(room, roomPath) {
                 }
         });
 
-        $("li").on("click", function(){
+        $("label").on("click", function(){
             //onsole.log(this.id);
                 //HideAll(room, nodeLength);
                 var t = 0;
@@ -184,6 +184,7 @@ module.exports = function(room, roomPath) {
 
 }
    function FirstInit(room, nodeLength, nodeTypes, lightType){
+    console.log(room);
         TreeMake(room, nodeLength);
         Initialing(room);
         ContentCreation(room, nodeLength, nodeTypes, lightType);
@@ -570,7 +571,7 @@ function ContentCreation(room, nodeLength, nodeTypes, lightType) {
             '       <label>w: </label>' +
             '       <input class="nums" type="number" id="node' + i + '_pose_orientation_qw" value="' + room.content.node[i].pose.orientation.quaternion.w + '"><br> ' +
             '   </div>' +
-            '   <div id="node' + i + '_angleAxis" class="hidden">' +
+            '   <div id="node' + i + '_angleAxis" class="hidden">' +    
             '    <label>Angle: </label>' +
             '    <input class="nums" type="number" id="node' + i + '_pose_orientation_angle"><br>' +
             '    <label>Axis: </label>' +
@@ -945,7 +946,7 @@ function ContentCreation(room, nodeLength, nodeTypes, lightType) {
 function TreeMake(room, nodeLength){
         for (var i = 0; i < nodeLength; i++) {
             $('#treeCONTENTNODE').append(
-                '<li id="treeNODE'+i+'">'+room.content.node[i]['$'].name)+'</li>'
+                '<li> <label class="btn btn-warning fa" id="treeNODE'+i+'">'+room.content.node[i]['$'].name)+'</label>'
         }
 }
 
