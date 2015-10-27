@@ -1,5 +1,5 @@
-module.exports =
-	{
+module.exports = function(){
+	var obj = {
 				"$": {
 					name: ""
 				},
@@ -46,6 +46,10 @@ module.exports =
 					"x": "",
 					"y": "",
 					"z": ""
+				},
+				"entity":{
+					"meshFileName": "",
+					"castShadows": ""
 				},
 				"light":{
 					"offset":{
@@ -131,3 +135,5 @@ module.exports =
 					}
 				}			
 	}
+	return obj;
+}

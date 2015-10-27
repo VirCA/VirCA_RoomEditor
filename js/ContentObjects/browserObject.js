@@ -1,5 +1,5 @@
-module.exports =
-	{
+module.exports = function(){
+	var obj = {
 				"$": {
 					name: ""
 				},
@@ -59,3 +59,5 @@ module.exports =
 					"zoom": ""
 				}			
 	}
+	return obj;
+}

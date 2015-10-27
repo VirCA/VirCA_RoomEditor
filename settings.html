@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="css/settings_style.css">
 
 
+    <link rel="stylesheet" href="bootstrap-colorpicker-master/dist/css/bootstrap-colorpicker.css">
+    <link rel="stylesheet" href="bootstrap-slider-master/dist/css/bootstrap-slider.min.css">
+
 </head>
 
 <body>
@@ -45,12 +48,12 @@
                                     <li><label id = "treePRESENTATION" class="btn btn-warning fa tree-toggle nav-header">Presentation</label>
                                  </ul>
                                  <li><label id="treeCONTENT" class="fa tree-toggle nav-header btn btn-default">Content</label>
-                                 <ul id="treeCONTENTNODE" class="fa nav nav-list tree"></ul>
+                                 <ul id="treeCONTENTNODE" class="fa nav nav-list tree "></ul>
                               </ul>
-                            </ul> 
+                            </ul>
                     </div>
                 </div>
-            </div>                
+            </div>
         </div>
 
         <div class="plane">
@@ -63,7 +66,7 @@
                     <div class="well">
             <div class="settings-zone">
                 <!--FIRST-->
-                <div id="RN" class="first hidden"> 
+                <div id="RN" class="first hidden">
                     <label>Room name:</label>
                     <input class="tex" type="text" id="roomName" value=""><br>
                 </div>
@@ -75,13 +78,16 @@
                             <label>Skybox</label>
                             <div class="third">
                                 <label> Material Name:</label>
-                                <input class="tex" type="text" id="environment_skybox_materialName" value=""><br>
+                                <input class="tex" type="text" id="environment_skybox_materialName" value=""/><br>
                                 <label> Distance:</label>
-                                <input class="tex" type="text" id="environment_skybox_distance" value=""><br>
+                                <input class="tex" type="text" id="environment_skybox_distance" value=""/>
+                                <div class="slDIV">
+                                  <input id="sliderDist" type="text"/>
+                                </div>
                             </div>
                         </div>
                         <div id="environment_ambientColor" class="second">
-                            <label>Ambient Color:</label>
+                            <label>Ambient Color:</label><a class="demoAmbi btn btn-submit">--COLOR PICKER--</a>
                             <div class="third">
                                 <label>r: </label>
                                 <input class="nums" type="number" min="0" max="1" step="0.00001" id="environment_ambientColor_r"><br>
@@ -94,7 +100,7 @@
                             </div>
                         </div>
                         <div id="environment_backgroundColor" class="second">
-                            <label>Background Color:</label>
+                            <label>Background Color:</label><a class="demoBack btn btn-submit">--COLOR PICKER--</a>
                             <div class="third">
                                 <label>r: </label>
                                 <input class="nums" type="number" min="0" max="1" step="0.00001" id="environment_backgroundColor_r"><br>
@@ -145,6 +151,7 @@
                                     <option value="EXP2">EXP2</option>
                                 </select><br>
                                 <label>Color:</label>
+                                <a class="demoFog btn btn-submit">--COLOR PICKER--</a>
                                 <div class="fourth">
                                     <label>r: </label>
                                     <input class="nums" type="number" min="0" max="1" step="0.00001" id="environment_fog_color_r"><br>
@@ -157,10 +164,19 @@
                                 </div><br>
                                 <label>Linear Start:</label>
                                 <input class="nums" type="number" step="0.001"  id="environment_fog_linearStart" value=""><br>
+                                <div class="slDIV">
+                                  <input id="sliderLINSTART" type="text"/>
+                                </div>
                                 <label>Linear Stop:</label>
                                 <input class="nums" type="number" step="0.001"  id="environment_fog_linearStop" value=""><br>
+                                <div class="slDIV">
+                                  <input id="sliderLINSTOP" type="text"/>
+                                </div>
                                 <label>Exp Density:</label>
                                 <input class="nums" type="number" step="0.001"  id="environment_fog_expDensity" value=""><br>
+                                <div class="slDIV">
+                                  <input id="sliderEXP" type="text"/>
+                                </div>
 
                             </div>
 
@@ -184,6 +200,9 @@
                             </select><br>
                             <label>Length:</label>
                             <input class="nums" type="number" step="0.001" id="pointer_length" value="0.0"><br>
+                            <div class="slDIV">
+                              <input id="sliderLENGTH" type="text"/>
+                            </div>
                             <label>Offset:</label>
                             <div class="third">
                                 <label>x: </label>
@@ -204,22 +223,40 @@
                             <div class="third">
                                 <label>min:</label>
                                 <input class="nums" type="number" step="0.001" id="boundaries_xLimit_min"><br>
+                                <div class="slDIV">
+                                  <input id="sliderXMIN" type="text"/>
+                                </div>
                                 <label>max:</label>
                                 <input class="nums" type="number" step="0.001" id="boundaries_xLimit_max"><br>
+                                <div class="slDIV">
+                                  <input id="sliderXMAX" type="text"/>
+                                </div>
                             </div>
                             <label>yLimit:</label>
                             <div class="third">
                                 <label>min:</label>
                                 <input class="nums" type="number" step="0.001" id="boundaries_yLimit_min"><br>
+                                <div class="slDIV">
+                                  <input id="sliderYMIN" type="text"/>
+                                </div>
                                 <label>max:</label>
                                 <input class="nums" type="number" step="0.001" id="boundaries_yLimit_max"><br>
+                                <div class="slDIV">
+                                  <input id="sliderYMAX" type="text"/>
+                                </div>
                             </div>
                             <label>zLimit:</label>
                             <div class="third">
                                 <label>min:</label>
                                 <input class="nums" type="number" step="0.001" id="boundaries_zLimit_min"><br>
+                                <div class="slDIV">
+                                  <input id="sliderZMIN" type="text"/>
+                                </div>
                                 <label>max:</label>
                                 <input class="nums" type="number" step="0.001" id="boundaries_zLimit_max"><br>
+                                <div class="slDIV">
+                                  <input id="sliderZMAX" type="text"/>
+                                </div>
                             </div>
                         </div>
 
@@ -242,14 +279,7 @@
 
                                 <label>Orientation:</label>
                                 <div class="fourth">
-                                    <label>Camera Orientation:</label>
-                                    <select class="tex" id="camera_orientation">
-                                        <option value="q">Quaternion</option>
-                                        <option value="ang">Angle Axis</option>
-                                        <option value="rot">Rotation Matrix</option>
-                                        <option value="ypr">Yaw Pitch Roll</option>
-                                    </select><br>
-                                    <div class="fifth">
+                                    <label>Quaternion:</label>
                                         <div id="camera_quaternion">
                                             <label>x: </label>
                                             <input class="nums" step="0.001" type="number" id="camera_pose_orientation_qx"><br>
@@ -260,50 +290,6 @@
                                             <label>w: </label>
                                             <input class="nums" step="0.001" type="number" id="camera_pose_orientation_qw"><br>
                                         </div>
-                                        <div id="camera_angleAxis">
-                                            <label>Angle: </label>
-                                            <input class="nums" step="0.001" type="number" id="camera_pose_orientation_angle"><br>
-                                            <label>Axis: </label>
-                                            <div class="fifth">
-                                                <label>x: </label>
-                                                <input class="nums" step="0.001" type="number" id="camera_pose_orientation_axis_x"><br>
-                                                <label>y: </label>
-                                                <input class="nums" step="0.001" type="number" id="camera_pose_orientation_axis_y"><br>
-                                                <label>z: </label>
-                                                <input class="nums" step="0.001" type="number" id="camera_pose_orientation_axis_z"><br>
-                                            </div>
-                                        </div>
-                                        <div id="camera_ypr">
-                                            <label>Yaw: </label>
-                                            <input class="nums" step="0.001" type="number" id="camera_pose_orientation_yaw"><br>
-                                            <label>Pitch: </label>
-                                            <input class="nums" step="0.001" type="number" id="camera_pose_orientation_pitch"><br>
-                                            <label>Roll: </label>
-                                            <input class="nums" step="0.001" type="number" id="camera_pose_orientation_roll"><br>
-                                        </div>
-                                        <div id="camera_rotMatrix">
-                                           <div class="fifth">
-                                               <label>xx</label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_xx"><br>
-                                               <label>xy </label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_xy"><br>
-                                               <label>xz </label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_xz"><br>
-                                               <label>yx</label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_yx"><br>
-                                               <label>yy </label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_yy"><br>
-                                               <label>yz </label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_yz"><br>
-                                               <label>zx</label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_zx"><br>
-                                               <label>zy </label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_zy"><br>
-                                               <label>zz </label>
-                                               <input class="nums" step="0.001" type="number" id="camera_pose_orientation_zz"><br>
-                                           </div>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
@@ -313,13 +299,22 @@
                             <div class="third">
                                 <label>Near:</label>
                                 <input class="nums" step="0.001" type="number" id="camera_clipping_near"><br>
+                                <div class="slDIV">
+                                  <input id="sliderNEAR" type="text"/>
+                                </div>
                                 <label>Far:</label>
                                 <input class="nums" step="0.001" type="number" id="camera_clipping_far"><br>
+                                <div class="slDIV">
+                                  <input id="sliderFAR" type="text"/>
+                                </div>
                             </div>
                         </div>
                         <div class="second">
                             <label>Fov:</label>
                             <input class="nums" step="0.001" type="number" id="camera_fov">
+                            <div class="slDIV">
+                              <input id="sliderFOV" type="text"/>
+                            </div>
                         </div>
 
                     </div>
@@ -355,10 +350,10 @@
         </div>
     </div> </div> </div>
 
-    
+
 
     <!-- jQuery -->
-    
+
     <!-- Bootstrap Core JavaScript -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
@@ -367,22 +362,30 @@
 
     <!-- Scrolling Nav JavaScript -->
     <script src="js/settings.js"></script>
-    
+    <script>
+
+    </script>
+
+
     <script>
 
     $(function(){
+
         window.$ = window.jQuery = require('jQuery');
+        $("#settings").removeClass("hidden").addClass("shown");
         var parser = require("./js/roomObjectGenerator.js");
         var settings = require("./js/settings.js");
         var room = {};
         var roomPath = "";
+
+
         roomPath = sessionStorage.getItem('roomPath');
         if(roomPath != undefined){
             console.log("Roompath: "+roomPath);
             room = parser(roomPath, settings);
 
-            $("#url").removeClass("shown").addClass("hidden");
-            $("#settings").removeClass("hidden").addClass("shown");    
+
+
         }
         else{
             console.log("Error: No file selected. RoomPath: "+roomPath);
@@ -396,10 +399,10 @@
         $(function(){
         $('.tree-toggle').parent().children('ul.tree').toggle(200);
         })
-        
+
     });
 
-    
+
     </script>
    </body>
 

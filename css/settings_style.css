@@ -6,7 +6,24 @@
         text-align: center;
         width:100%;
     }
-
+    .demoBack{
+      text-align: right;
+      margin-left: 180px;
+    }
+    #ex1Slider .slider-selection {
+    	background: #BABABA;
+    }
+    .slDIV{
+      margin-left: 120px;
+    }
+    .demoAmbi{
+      text-align: right;
+      margin-left: 207px;
+    }
+    .demoFog{
+      text-align: right;
+      margin-left: 245px;
+    }
     .fl{
         float: left;
     }
@@ -30,7 +47,7 @@
         margin-left: 6%;
         float: left;
     }
-    
+
     label{
         height: 30px;
     }
@@ -51,15 +68,20 @@
     }
     .second{
         margin-left: 20px;
+        background-color: #E8E8E8;
     }
     .third{
         margin-left: 20px;
+        background-color: #D8D8D8;
     }
     .fourth{
         margin-left: 20px;
+
+        background-color: #B8B8B8 ;
     }
     .fifth{
         margin-left: 20px;
+        background-color: #888888;
     }
     .settings-zone {
         width: 500px;
@@ -81,7 +103,7 @@
         margin-top: 10px;
     }
     #treeLEFT{
-        overflow-y: scroll; 
+        overflow-y: scroll;
         height: 400px;
     }
     #url{
