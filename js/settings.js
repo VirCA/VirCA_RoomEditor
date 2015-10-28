@@ -487,140 +487,140 @@ function ContentCreation(room, nodeLength, nodeTypes, lightType) {
             $('#room_content_node' + i + '_entity_castShadows').val(room.content.node[i].entity.castShadows);
 
         }
-        else if (nodeTypes[i] == "light") {
-            $('#content_node' + i).append(
-                '<div class="second">' +
-                '   <label>Light</label>' +
-                '   <div class="third">' +
-                '       <label>Diffuse</label>' +
-                '       <div class="fourth">' +
-                '           <label>r:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_r" value="' + room.content.node[i].light.diffuse.r + '"><br>' +
-                '           <label>g:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_g" value="' + room.content.node[i].light.diffuse.g + '"><br>' +
-                '           <label>b:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_b" value="' + room.content.node[i].light.diffuse.b + '"><br>' +
-                '           <label>a:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_a" value="' + room.content.node[i].light.diffuse.a + '"><br>' +
-                '       </div>' +
-                '        <label>Specular</label>' +
-                '       <div class="fourth">' +
-                '           <label>r:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_r" value="' + room.content.node[i].light.specular.r + '"><br>' +
-                '           <label>g:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_g" value="' + room.content.node[i].light.specular.g + '"><br>' +
-                '           <label>b:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_b" value="' + room.content.node[i].light.specular.b + '"><br>' +
-                '           <label>a:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_a" value="' + room.content.node[i].light.specular.a + '"><br>' +
-                '       </div>' +
-                '       <label>Offset</label>' +
-                '       <div class="fourth">' +
-                '           <label>x:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_offset_x" value="' + room.content.node[i].light.offset.x + '"><br>' +
-                '           <label>y:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_offset_y" value="' + room.content.node[i].light.offset.y + '"><br>' +
-                '           <label>z:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_offset_z" value="' + room.content.node[i].light.offset.z + '"><br>' +
-                '       </div>' +
-                '       <label>Cast Shadows:</label>' +
-                '       <select class="tex" id="content_node' + i + '_light_castShadows">' +
-                '           <option value=""></option>' +
-                '           <option value="true">True</option>' +
-                '           <option value="false">False</option>' +
-                '       </select><br>' +
-                '   </div>' +
-                '</div>'
-                );
-            $('#content_node' + i + '_light_castShadows').val(room.content.node[i].light.castShadows);
+            else if (nodeTypes[i] == "light") {
+                $('#content_node' + i).append(
+                    '<div class="second">' +
+                    '   <label>Light</label>' +
+                    '   <div class="third">' +
+                    '       <label>Diffuse</label>' +
+                    '       <div class="fourth">' +
+                    '           <label>r:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_r" value="' + room.content.node[i].light.diffuse.r + '"><br>' +
+                    '           <label>g:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_g" value="' + room.content.node[i].light.diffuse.g + '"><br>' +
+                    '           <label>b:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_b" value="' + room.content.node[i].light.diffuse.b + '"><br>' +
+                    '           <label>a:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_diffuse_a" value="' + room.content.node[i].light.diffuse.a + '"><br>' +
+                    '       </div>' +
+                    '        <label>Specular</label>' +
+                    '       <div class="fourth">' +
+                    '           <label>r:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_r" value="' + room.content.node[i].light.specular.r + '"><br>' +
+                    '           <label>g:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_g" value="' + room.content.node[i].light.specular.g + '"><br>' +
+                    '           <label>b:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_b" value="' + room.content.node[i].light.specular.b + '"><br>' +
+                    '           <label>a:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_specular_a" value="' + room.content.node[i].light.specular.a + '"><br>' +
+                    '       </div>' +
+                    '       <label>Offset</label>' +
+                    '       <div class="fourth">' +
+                    '           <label>x:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_offset_x" value="' + room.content.node[i].light.offset.x + '"><br>' +
+                    '           <label>y:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_offset_y" value="' + room.content.node[i].light.offset.y + '"><br>' +
+                    '           <label>z:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_offset_z" value="' + room.content.node[i].light.offset.z + '"><br>' +
+                    '       </div>' +
+                    '       <label>Cast Shadows:</label>' +
+                    '       <select class="tex" id="content_node' + i + '_light_castShadows">' +
+                    '           <option value=""></option>' +
+                    '           <option value="true">True</option>' +
+                    '           <option value="false">False</option>' +
+                    '       </select><br>' +
+                    '   </div>' +
+                    '</div>'
+                    );
+                $('#content_node' + i + '_light_castShadows').val(room.content.node[i].light.castShadows);
 
 
-            if (lightType[p] == 'spot') {
-                $('#content_node' + i).append(
-                '<div class="second">' +
-                '      <label>Spot:</label> '+
-                '     <div class="third" id="room_content_node' + i + '_light_type_spot">' +
-                '       <label>Range:</label>' +
-                '       <div class="fourth">' +
-                '           <label>Inner: </label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_range_inner" value="' + room.content.node[i].light.type.spot.range.inner + '"><br>' +
-                '           <label>Outer: </label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_range_outer" value="' + room.content.node[i].light.type.spot.range.outer + '"><br>' +
-                '           <label>Fall off: </label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_range_falloff" value="' + room.content.node[i].light.type.spot.range.falloff + '"><br>' +
-                '       </div>' +
-                '       <label>Attenuation: </label>' +
-                '       <div class="fourth">' +
-                '           <label>Range:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_range" value="' + room.content.node[i].light.type.spot.attenuation.range + '"><br>' +
-                '           <label>Manual: </label>' +
-                '           <div class="fifth">' +
-                '               <label>Constant:</label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_manual_constant" value="' + room.content.node[i].light.type.spot.attenuation.manual.constant + '"><br>' +
-                '               <label>Linear: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_manual_linear" value="' + room.content.node[i].light.type.spot.attenuation.manual.linear + '"><br>' +
-                '               <label>Quadratic: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_manual_quadratic" value="' + room.content.node[i].light.type.spot.attenuation.manual.quadratic + '"><br> ' +
-                '           </div>' +
-                '       </div>' +
-                '       <label>Direction: </label>' +
-                '           <div class="fourth">' +
-                '               <label>x:</label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_direction_x" value="' + room.content.node[i].light.type.spot.direction.x + '"><br>' +
-                '               <label>y: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_direction_y" value="' + room.content.node[i].light.type.spot.direction.y + '"><br>' +
-                '               <label>z: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_direction_z" value="' + room.content.node[i].light.type.spot.direction.z + '"><br> ' +
-                '           </div>' +
-                '       </div>' +
-                '   </div>' +
-                '</div>'
-            );
-            }
-            else if (lightType[p] == 'point') {
-               $('#content_node' + i).append(
-                '<div class="second">' +
-                '      <label>Point:</label> '+
-                '   <div class="third" id="room_content_node' + i + '_light_type_point">' +
-                '       <label>Attenuation: </label>' +
-                '       <div class="fourth">' +
-                '           <label>Range:</label>' +
-                '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_range" value="' + room.content.node[i].light.type.point.attenuation.range + '"><br>' +
-                '           <label>Manual: </label>' +
-                '           <div class="fifth">' +
-                '               <label>Constant:</label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_manual_constant" value="' + room.content.node[i].light.type.point.attenuation.manual.constant + '"><br>' +
-                '               <label>Linear: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_manual_linear" value="' + room.content.node[i].light.type.point.attenuation.manual.linear + '"><br>' +
-                '               <label>Quadratic: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_manual_quadratic" value="' + room.content.node[i].light.type.point.attenuation.manual.quadratic + '"><br> ' +
-                '           </div>' +
-                '       </div>' +
-                '   </div>'+
-                '</div>'
+                if (lightType[p] == 'spot') {
+                    $('#content_node' + i).append(
+                    '<div class="second">' +
+                    '      <label>Spot:</label> '+
+                    '     <div class="third" id="room_content_node' + i + '_light_type_spot">' +
+                    '       <label>Range:</label>' +
+                    '       <div class="fourth">' +
+                    '           <label>Inner: </label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_range_inner" value="' + room.content.node[i].light.type.spot.range.inner + '"><br>' +
+                    '           <label>Outer: </label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_range_outer" value="' + room.content.node[i].light.type.spot.range.outer + '"><br>' +
+                    '           <label>Fall off: </label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_range_falloff" value="' + room.content.node[i].light.type.spot.range.falloff + '"><br>' +
+                    '       </div>' +
+                    '       <label>Attenuation: </label>' +
+                    '       <div class="fourth">' +
+                    '           <label>Range:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_range" value="' + room.content.node[i].light.type.spot.attenuation.range + '"><br>' +
+                    '           <label>Manual: </label>' +
+                    '           <div class="fifth">' +
+                    '               <label>Constant:</label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_manual_constant" value="' + room.content.node[i].light.type.spot.attenuation.manual.constant + '"><br>' +
+                    '               <label>Linear: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_manual_linear" value="' + room.content.node[i].light.type.spot.attenuation.manual.linear + '"><br>' +
+                    '               <label>Quadratic: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_attenuation_manual_quadratic" value="' + room.content.node[i].light.type.spot.attenuation.manual.quadratic + '"><br> ' +
+                    '           </div>' +
+                    '       </div>' +
+                    '       <label>Direction: </label>' +
+                    '           <div class="fourth">' +
+                    '               <label>x:</label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_direction_x" value="' + room.content.node[i].light.type.spot.direction.x + '"><br>' +
+                    '               <label>y: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_direction_y" value="' + room.content.node[i].light.type.spot.direction.y + '"><br>' +
+                    '               <label>z: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_spot_direction_z" value="' + room.content.node[i].light.type.spot.direction.z + '"><br> ' +
+                    '           </div>' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>'
                 );
+                }
+                else if (lightType[p] == 'point') {
+                   $('#content_node' + i).append(
+                    '<div class="second">' +
+                    '      <label>Point:</label> '+
+                    '   <div class="third" id="room_content_node' + i + '_light_type_point">' +
+                    '       <label>Attenuation: </label>' +
+                    '       <div class="fourth">' +
+                    '           <label>Range:</label>' +
+                    '           <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_range" value="' + room.content.node[i].light.type.point.attenuation.range + '"><br>' +
+                    '           <label>Manual: </label>' +
+                    '           <div class="fifth">' +
+                    '               <label>Constant:</label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_manual_constant" value="' + room.content.node[i].light.type.point.attenuation.manual.constant + '"><br>' +
+                    '               <label>Linear: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_manual_linear" value="' + room.content.node[i].light.type.point.attenuation.manual.linear + '"><br>' +
+                    '               <label>Quadratic: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_point_attenuation_manual_quadratic" value="' + room.content.node[i].light.type.point.attenuation.manual.quadratic + '"><br> ' +
+                    '           </div>' +
+                    '       </div>' +
+                    '   </div>'+
+                    '</div>'
+                    );
+                }
+                else if (lightType[p] == 'directional') {
+                    $('#content_node' + i).append(
+                    '<div class="second">' +
+                    '      <label>Directional:</label> '+
+                    '   <div class="third" id="room_content_node' + i + '_light_type_directional">' +
+                    '       <label>Direction: </label>' +
+                    '           <div class="fourth">' +
+                    '               <label>x:</label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_directional_direction_x" value="' + room.content.node[i].light.type.directional.direction.x + '"><br>' +
+                    '               <label>y: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_directional_direction_y" value="' + room.content.node[i].light.type.directional.direction.y + '"><br>' +
+                    '               <label>z: </label>' +
+                    '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_directional_direction_z" value="' + room.content.node[i].light.type.directional.direction.z + '"><br> ' +
+                    '           </div>' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>'
+                );
+                }
+                ++p;
             }
-            else if (lightType[p] == 'directional') {
-                $('#content_node' + i).append(
-                '<div class="second">' +
-                '      <label>Directional:</label> '+
-                '   <div class="third" id="room_content_node' + i + '_light_type_directional">' +
-                '       <label>Direction: </label>' +
-                '           <div class="fourth">' +
-                '               <label>x:</label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_directional_direction_x" value="' + room.content.node[i].light.type.directional.direction.x + '"><br>' +
-                '               <label>y: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_directional_direction_y" value="' + room.content.node[i].light.type.directional.direction.y + '"><br>' +
-                '               <label>z: </label>' +
-                '               <input class="nums" type="number" id="room_content_node' + i + '_light_type_directional_direction_z" value="' + room.content.node[i].light.type.directional.direction.z + '"><br> ' +
-                '           </div>' +
-                '       </div>' +
-                '   </div>' +
-                '</div>'
-            );
-            }
-            ++p;
-        }
         else if (nodeTypes[i] == "browser") {
             $('#content_node' + i).append(
                 '<label>Browser:</label>' +
