@@ -8,7 +8,8 @@
     "glob": "^5.0.15",
     "jquery": "^2.1.4",
     "js2xmlparser": "^1.0.0",
-    "xmljson": "^0.2.0"
+    "xmljson": "^0.2.0",
+	"electron-prebuilt": "^0.27.3"
   },
   "devDependencies": {},
   "scripts": {

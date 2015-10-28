@@ -366,12 +366,12 @@
 
     </script>
 
-
+        
     <script>
+	window.$ = window.jQuery = require('jQuery');
 
     $(function(){
 
-        window.$ = window.jQuery = require('jQuery');
         $("#settings").removeClass("hidden").addClass("shown");
         var parser = require("./js/roomObjectGenerator.js");
         var settings = require("./js/settings.js");
