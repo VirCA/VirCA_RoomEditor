@@ -26,6 +26,11 @@
 <div id="image">
     <img src="vircalogo.png" width="300px"><br><br>
 </div>
+    <div id="myRoomName"></div>
+    <div id="search_module">
+        <label>Search:</label>
+        <input type="text" id="search_module_input"/>
+    </div>
     <div id="settings">
         <div id="btn-back">
             <a class="btn btn-danger">Get back to the selection part</a>
@@ -36,7 +41,7 @@
                 <div class="span3">
                     <div class="well">
                             <ul id="treeLEFT" class="nav nav-list">
-                              <li ><label id = "treeROOM" class="fa tree-toggle nav-header btn btn-default">room</label>
+                              <li><label id = "treeROOM" class="fa tree-toggle nav-header btn btn-default">room</label>
                               <ul class="fa nav nav-list">
                                  <li ><label id = "treeSETTINGS" class="fa tree-toggle nav-header btn btn-default">Settings</label>
                                  <ul class="fa nav nav-list tree">
@@ -366,12 +371,11 @@
 
     </script>
 
-        
+
     <script>
-	window.$ = window.jQuery = require('jQuery');
 
     $(function(){
-
+        window.$ = window.jQuery = require('jQuery');
         $("#settings").removeClass("hidden").addClass("shown");
         var parser = require("./js/roomObjectGenerator.js");
         var settings = require("./js/settings.js");
@@ -383,9 +387,6 @@
         if(roomPath != undefined){
             console.log("Roompath: "+roomPath);
             room = parser(roomPath, settings);
-
-
-
         }
         else{
             console.log("Error: No file selected. RoomPath: "+roomPath);
@@ -397,8 +398,9 @@
             $(this).parent().children('ul.tree').toggle(200);
         });
         $(function(){
-        $('.tree-toggle').parent().children('ul.tree').toggle(200);
-        })
+            $('.tree-toggle').parent().children('ul.tree').toggle(200);
+        });
+
 
     });
 

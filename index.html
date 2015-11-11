@@ -41,23 +41,27 @@
 
 
     function MakeTreeStructure(){
-        console.log("Lefutottam;");
-
+        var fs = require('fs');
         var glob = require("glob");
         var dirs = getDirectories("C:/Users/Public/Documents/VirCA/");
-        console.log(dirs);
         var rooms = [];
+        var room_dirs = [];
+        var p = 0;
         $('#choiceTree').append('<ul id="choiceTreeUL"></ul>');
-        for(var i = 0; i < dirs.length; ++i){
-            console.log(i);
+        for (var i = 0; i < dirs.length; i++) {
             rooms[i] = [];
-            rooms[i] = glob.sync("C:/Users/Public/Documents/VirCA/"+dirs[i]+"/Media/rooms/**/*.room");
-            $('#choiceTreeUL').append('<li>'+dirs[i]+'<ul id="choiceTreeLis'+i+'">');
-            for(var j = 0; j < rooms[i].length; ++j){
-                $('#choiceTreeLis'+i).append('<li><input type="radio" name="myChoice" value="'+rooms[i][j]+'">'+rooms[i][j].substring(rooms[i][j].lastIndexOf("/")+1)+'</li>');
-            }
-            $('#choiceTreeUL').append('</ul></li>');
-        }
+            room_dirs = getDirectories("C:/Users/Public/Documents/VirCA/"+dirs[i]+"/Media/rooms/");
+            //console.log(room_dirs[1]);
+            $('#choiceTreeUL').append('<li>'+dirs[i]+'<ul id="choiceTreeLis'+i+'"></ul></li>');
+            for (var j = 0; j < room_dirs.length; j++) {
+                if(fs.existsSync("C:/Users/Public/Documents/VirCA/"+dirs[i]+"/Media/rooms/"+room_dirs[j]+"/"+room_dirs[j]+".room")){
+                    rooms[i][p] = "C:/Users/Public/Documents/VirCA/"+dirs[i]+"/Media/rooms/"+room_dirs[j]+"/"+room_dirs[j]+".room";
+                    $('#choiceTreeLis'+i).append('<li><input type="radio" name="myChoice" value="'+rooms[i][p]+'">'+room_dirs[j]+'</li>');
+                     ++p;
+                }
+            };
+        };
+        //console.log(rooms);
         return rooms;
     }
 

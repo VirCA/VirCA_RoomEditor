@@ -6,6 +6,13 @@
         text-align: center;
         width:100%;
     }
+    #myRoomName{
+        text-align: center;
+    }
+    #search_module{
+        text-align: center;
+        margin-bottom: 2%;
+    }
     .demoBack{
       text-align: right;
       margin-left: 180px;

@@ -16,8 +16,8 @@ module.exports = function(roomPath, settings){
 		if(err)
 			console.log(err);
 		else{
-			console.log("result:");
-			console.log(result);
+			//console.log("result:");
+			//console.log(result);
 			settings(result, roomPath);
 		}
 

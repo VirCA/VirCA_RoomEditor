@@ -4,6 +4,7 @@ module.exports = function (room) {
         window.$ = window.jQuery = require('jQuery');
     //----------------roomName-------------------
     $('#roomName').val(room['$'].name);
+    //console.log(room[]);
     //-----------------environment----------------
     if (room.settings.environment.skybox != undefined) {
         $('#environment_skybox_materialName').val(room.settings.environment.skybox.materialName);
@@ -62,7 +63,4 @@ module.exports = function (room) {
         $('#presentation_fileName').val(room.settings.presentation.fileName);
         $('#presentation_enabled').val(room.settings.presentation.enabled);
     }
-
-
-
 }

@@ -7,15 +7,20 @@ module.exports = function(room, roomPath) {
 
 
     room = room.room;
-
+    $('#myRoomName').append('<label>Room Name: '+room['$'].name+'</label>');
     var nodeLength = GetLength(room.content.node);
-    var nodeTypes = GetNodeTypes(room.content.node, nodeLength);
-    var lightType = GetLightTypes(room.content, nodeLength, nodeTypes);
-
+ 
 
     var nodesName = GetNodesName(room.content, nodeLength);
+
+    nodesName = ABCNameOrdering(nodesName);
+    room.content.node = ABCordering(nodesName, room.content.node);
+    var nodeTypes = GetNodeTypes(room.content.node, nodeLength);
+    var lightType = GetLightTypes(room.content, nodeLength, nodeTypes);
     room.settings = GetFullSettings(room.settings);
     room.content.node = GetFullContent(room.content, nodeTypes, nodeLength);
+
+
 
     var Convert2Quaternion = require("./Convert2Quaternion.js");
     for (var i = 0; i < nodeLength; i++) {
@@ -25,12 +30,13 @@ module.exports = function(room, roomPath) {
 
     FirstInit(room, nodeLength, nodeTypes, lightType);
 
-    InitColorsSliders();
+    InitColorsSliders(nodeLength, room);
 
+    SearchEngine(room, nodeLength);
     var genRoomButton = document.getElementById("settings_submit");
 
+
     $('input, select').on("change", function(){
-        console.log("Frissítés történt.");
         GetSettingsObject(room);
         GetContentObject(room, nodeLength, nodeTypes, nodesName);
         room['@'] = {
@@ -38,7 +44,10 @@ module.exports = function(room, roomPath) {
         };
         room['@'].name = $('#roomName').val();
         room['$'] = undefined;
+        var time = Date.now();
         fs.writeFileSync(roomPath, roomGenerator(room));
+        time = (Date.now()-time)/1000;
+        console.log("Room file has been updated: "+time+"sec");
     });
 
 
@@ -104,7 +113,7 @@ module.exports = function(room, roomPath) {
         });
 }
    function FirstInit(room, nodeLength, nodeTypes, lightType){
-    console.log(room);
+    //console.log(room);
         TreeMake(room, nodeLength);
         Initialing(room);
         ContentCreation(room, nodeLength, nodeTypes, lightType);
@@ -435,10 +444,25 @@ function ContentCreation(room, nodeLength, nodeTypes, lightType) {
         $('#content').append('<div class="hidden" id="content_node' + i + '"></div>');//content_node1
         $('#content_node' + i).append('<div class="first" id="content_node' + i + '_name"><label>Node name:</label><input type="text" class"tex" id="content_node' + i + '_nameValue" value="' + room.content.node[i]['$'].name + '"></div>');//content_node1_nameValue
         $('#content_node' + i).append('<div class="second" id="content_node' + i + '_pose"><label>Pose:</label></div>');//content_node1_pose
-        $('#content_node' + i + '_pose').append('<div class="third" id="content_node' + i + '_pose_position"><label>Position:</label><br><div class="fourth" id="content_node' + i + '_pose_positionValues"></div></div>');//content_node1_pose_position && content_node1_pose_positionValues
-        $('#content_node' + i + '_pose_positionValues').append('<label>x:</label><input class="nums" type="number" id="content_node' + i + '_pose_position_x" value="' + room.content.node[i].pose.position.x + '"><br>');//content_node1_pose_position_x
-        $('#content_node' + i + '_pose_positionValues').append('<label>y:</label><input class="nums" type="number" id="content_node' + i + '_pose_position_y" value="' + room.content.node[i].pose.position.y + '"><br>');//content_node1_pose_position_y
-        $('#content_node' + i + '_pose_positionValues').append('<label>z:</label><input class="nums" type="number" id="content_node' + i + '_pose_position_z" value="' + room.content.node[i].pose.position.z + '"><br>'); //content_node1_pose_position_z
+        $('#content_node' + i + '_pose').append(
+            '<div class="third" id="content_node' + i + '_pose_position">'+
+            '   <label>Position:</label><br>'+
+            '   <div class="fourth">'+
+            '       <label>x:</label>'+
+            '       <div id="sliderPOSX'+i+'">'+
+            '           <input class="nums" type="number" id="content_node' + i + '_pose_position_x" value="' + room.content.node[i].pose.position.x + '">'+
+            '       </div>'+
+            '       <label>y:</label>'+
+            '       <div id="sliderPOSY'+i+'">'+
+            '           <input class="nums" type="number" id="content_node' + i + '_pose_position_y" value="' + room.content.node[i].pose.position.y + '">'+
+            '       </div>'+
+            '       <label>z:</label>'+
+            '       <div id="sliderPOSZ'+i+'">'+
+            '           <input class="nums" type="number" id="content_node' + i + '_pose_position_z" value="' + room.content.node[i].pose.position.z + '">'+
+            '       </div>'+
+            '   </div>'+
+            '</div>'       
+        );
         $('#content_node' + i + '_pose').append('<div id="content_node'+i+'_pose_orientations" class="third"><label>Orientation:</label></div>');//content_node1_pose_orientetion
         $('#content_node' + i + '_pose_orientations').append(
             '<div class="fourth">' +
@@ -769,10 +793,10 @@ function ContentCreation(room, nodeLength, nodeTypes, lightType) {
 }
 
 function TreeMake(room, nodeLength){
-        for (var i = 0; i < nodeLength; i++) {
-            $('#treeCONTENTNODE').append(
-                '<li> <label class="btn btn-warning fa" id="treeNODE'+i+'">'+room.content.node[i]['$'].name)+'</label>'
-        }
+    for (var i = 0; i < nodeLength; i++) {
+        $('#treeCONTENTNODE').append(
+             '<li> <label class="btn btn-warning fa" id="treeNODE'+i+'">'+room.content.node[i]['$'].name)+'</label>'
+    }
 }
 
 function GetLength(node){
@@ -892,24 +916,47 @@ function GetNodesName(content, nodeLength){
     return nodeNames;
 }
 
-function InitColorsSliders(){
-  ColorFunc("demoBack", "environment_backgroundColor_r", "environment_backgroundColor_g", "environment_backgroundColor_b", "environment_backgroundColor_a");
-  ColorFunc("demoAmbi", "environment_ambientColor_r", "environment_ambientColor_g", "environment_ambientColor_b", "environment_ambientColor_a");
-  ColorFunc("demoFog", "environment_fog_color_r", "environment_fog_color_g", "environment_fog_color_b", "environment_fog_color_a");
-  SliderFunc("sliderDist", "environment_skybox_distance", 0, 10000, 1);
-  SliderFunc("sliderLINSTART", "environment_fog_linearStart", 0, 5000, 1);
-  SliderFunc("sliderLINSTOP", "environment_fog_linearStop", 0, 5000, 1);
-  SliderFunc("sliderEXP", "environment_fog_expDensity", 0, 1, 0.001);
-  SliderFunc("sliderLENGTH", "pointer_length", 0, 10000,  1);
-  SliderFunc("sliderXMIN", "boundaries_xLimit_min", -5000, 5000, 1);
-  SliderFunc("sliderXMAX", "boundaries_xLimit_max", -5000, 5000, 1);
-  SliderFunc("sliderYMIN", "boundaries_yLimit_min", -5000, 5000, 1);
-  SliderFunc("sliderYMAX", "boundaries_yLimit_max", -5000, 5000, 1);
-  SliderFunc("sliderZMIN", "boundaries_zLimit_min", -5000, 5000, 1);
-  SliderFunc("sliderZMAX", "boundaries_zLimit_max", -5000, 5000, 1);
-  SliderFunc("sliderNEAR", "camera_clipping_near", 0, 1000, 1);
-  SliderFunc("sliderFAR", "camera_clipping_far", 0, 10000, 1);
-  SliderFunc("sliderFOV", "camera_fov", 0, 500, 1);
+function InitColorsSliders(nodeLength, room){
+    ColorFunc("demoBack", "environment_backgroundColor_r", "environment_backgroundColor_g", "environment_backgroundColor_b", "environment_backgroundColor_a");
+    ColorFunc("demoAmbi", "environment_ambientColor_r", "environment_ambientColor_g", "environment_ambientColor_b", "environment_ambientColor_a");
+    ColorFunc("demoFog", "environment_fog_color_r", "environment_fog_color_g", "environment_fog_color_b", "environment_fog_color_a");
+    SliderFunc("sliderDist", "environment_skybox_distance", 0, 10000, 1);
+    SliderFunc("sliderLINSTART", "environment_fog_linearStart", 0, 5000, 1);
+    SliderFunc("sliderLINSTOP", "environment_fog_linearStop", 0, 5000, 1);
+    SliderFunc("sliderEXP", "environment_fog_expDensity", 0, 1, 0.001);
+    SliderFunc("sliderLENGTH", "pointer_length", 0, 10000,  1);
+    SliderFunc("sliderXMIN", "boundaries_xLimit_min", -10000, 10000, 1);
+    SliderFunc("sliderXMAX", "boundaries_xLimit_max", -10000, 10000, 1);
+    SliderFunc("sliderYMIN", "boundaries_yLimit_min", -10000, 10000, 1);
+    SliderFunc("sliderYMAX", "boundaries_yLimit_max", -10000, 10000, 1);
+    SliderFunc("sliderZMIN", "boundaries_zLimit_min", -10000, 10000, 1);
+    SliderFunc("sliderZMAX", "boundaries_zLimit_max", -10000, 10000, 1);
+    SliderFunc("sliderNEAR", "camera_clipping_near", 0, 1000, 1);
+    SliderFunc("sliderFAR", "camera_clipping_far", 0, 10000, 1);
+    SliderFunc("sliderFOV", "camera_fov", 0, 500, 1);
+
+    for (var i = 0; i < nodeLength; i++) {
+        //console.log($("#content_node" + i + "_pose_position_x").val());
+        $("#sliderPOSX" + i).append(
+            '<div class="slDIV">'+
+            '   <input id="SLIDERcontent_node'+i+'_pose_position_x" type="text"/>'+
+            '</div>'
+        );
+        $("#sliderPOSY" + i).append(
+            '<div class="slDIV">'+
+            '   <input id="SLIDERcontent_node'+i+'_pose_position_y" type="text"/>'+
+            '</div>'
+        );
+        $("#sliderPOSZ" + i).append(
+            '<div class="slDIV">'+
+            '   <input id="SLIDERcontent_node'+i+'_pose_position_z" type="text"/>'+
+            '</div>'
+        );
+        //console.log(parseFloat(room.content.node[i].pose.position.y) + 10);
+        SliderFunc("SLIDERcontent_node"+i+"_pose_position_x", "content_node"+i+"_pose_position_x", parseFloat(room.content.node[i].pose.position.x)- 50, parseFloat(room.content.node[i].pose.position.x) + 50, 1);
+        SliderFunc("SLIDERcontent_node"+i+"_pose_position_y", "content_node"+i+"_pose_position_y", parseFloat(room.content.node[i].pose.position.y) - 50, parseFloat(room.content.node[i].pose.position.y) + 50, 1);
+        SliderFunc("SLIDERcontent_node"+i+"_pose_position_z", "content_node"+i+"_pose_position_z", parseFloat(room.content.node[i].pose.position.z) - 50, parseFloat(room.content.node[i].pose.position.z) + 50, 1);
+    };
 }
 
 function SliderFunc(sliderID, changingID, minVal, maxVal, stepVal){
@@ -917,10 +964,11 @@ function SliderFunc(sliderID, changingID, minVal, maxVal, stepVal){
   var Slider = require('bootstrap-slider');
 
   var mySlider = new Slider('#'+sliderID);//$('#'+changingID).val()
-  mySlider.setValue(parseInt($('#'+changingID).val()));
-  mySlider.options.min = minVal;
-  mySlider.options.max = maxVal;
-  mySlider.options.step = stepVal;
+  mySlider.setValue(parseFloat($('#'+changingID).val()));
+  mySlider.options.min = parseInt(minVal);
+  mySlider.options.max = parseInt(maxVal);
+  mySlider.options.step = parseInt(stepVal);
+ // mySlider.options.value = $('#'+changingID).val();
   //console.log(mySlider);
   //console.log(mySlider.getValue());
   $("#"+changingID).on('change', function(){
@@ -941,9 +989,9 @@ function ColorFunc(model, r, g, b, a){
         format: "rgba"
       });
       var value = 'rgba('+ $("#"+r).val()*255 +', '+$("#"+g).val()*255 +', '+$("#"+b).val()*255 + ', ' +$("#"+a).val()*255 + ')';
-      console.log(value);
+    //  console.log(value);
       $('.'+model).colorpicker('setValue', value);
-      console.log($('.'+model).colorpicker('getValue'));
+     // console.log($('.'+model).colorpicker('getValue'));
       $("."+model).colorpicker().on('changeColor.colorpicker', function(event){
         var changedValue = $("."+model).colorpicker('getValue');
         var colors = {};
@@ -959,8 +1007,64 @@ function ColorFunc(model, r, g, b, a){
         $("#"+ g).val(colors.g);
         $("#"+ b).val(colors.b);
         $("#"+a).val(colors.a);
-        console.log(colors);
+       // console.log(colors);
         $("#"+r).trigger('change');
       });
     });
+}
+
+function compare(a,b) {
+  if (a['$'].name < b['$'].name)
+    return -1;
+  if (a['$'].name > b['$'].name)
+    return 1;
+  return 0;
+}
+
+function ABCordering(nodesName, nodes){
+    var tmp = [];
+    var p = 0;
+    //console.log(nodesName);
+    for (var i = 0; i < nodesName.length; i++) {
+        while(p < nodesName.length && nodes[p]['$'].name.toUpperCase() != nodesName[i].toUpperCase()){
+            p++;
+        }
+        if(p < nodesName.length){
+            tmp[i] = nodes[p];
+        }
+        p = 0;
+    };
+    //console.log(tmp);
+    return tmp;
+}
+
+function ABCNameOrdering(nodesName){
+    for (var i= 0;  i< nodesName.length; ++i) {
+        nodesName[i] = nodesName[i].toUpperCase();
+    };
+    return nodesName.sort();
+}
+
+function SearchEngine(room, nodeLength){
+    window.$ = window.jQuery = require('jQuery');
+        $("#search_module_input").on("change", function(){
+            ShowAll(nodeLength);
+            HideAll(room, nodeLength);
+            $('#settings-zone').removeClass('shown').addClass('hidden');
+            $();
+            for (var i = 0; i < nodeLength; i++) {
+                //console.log($('#treeNODE'+i).text());
+                if($('#treeNODE'+i).text().indexOf($('#search_module_input').val()) < 0){
+                    $('#treeNODE'+i).removeClass('shown').addClass('hidden');
+                    console.log($('#treeNODE'+i).text() +" nincs benne a "+ $('#search_module_input').val());
+                }
+            };
+
+        });
+}
+
+function ShowAll(nodeLength){
+    for (var i = 0; i < nodeLength; i++) {
+        $('#treeNODE'+i).removeClass('hidden').addClass('show');
+    }
 }
