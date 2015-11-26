@@ -1,3 +1,22 @@
+	#szechenyi2020 {
+		background-image: url("../images/szechenyi_2020_logo_fekvo_color_gradient_CMYK.jpg");
+		background-size: contain;
+		background-position: center, left;
+		background-repeat: no-repeat, repeat;
+		width: 300px;
+		height: 100px;
+	}
+
+	#esza {
+		background-image: url("../images/infoblokk_kedv_final_felso_cmyk_ESZA.jpg");
+		background-size: contain;
+		background-position: center, center;
+		background-repeat: no-repeat, repeat;
+		float: right;
+		width: 300px;
+		height: 200px;
+	}	
+	
     #image{
         display: block;
         margin-left: auto;
@@ -5,7 +24,6 @@
         position: relative;
         text-align: center;
         width:100%;
-        margin-top: 8%
     }
     #choiceTree{
         all:none;
