@@ -10,7 +10,9 @@
     "js2xmlparser": "^1.0.0",
     "xmljson": "^0.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+	"electron-prebuilt": "^0.36.0"
+  },
   "scripts": {
 	"start": "electron app.js"
   },
